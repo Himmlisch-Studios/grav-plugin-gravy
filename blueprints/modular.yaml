@@ -1,0 +1,28 @@
+'@extends':
+    type: modular
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      fields:
+        advanced:
+          fields:
+            columns:
+              fields:
+                column1:
+                  fields:
+                    header.content.items:
+                      type: text
+                      ordering@: -1
+                      label: PLUGIN_GRAVY.COLLECTION
+                      default: '@self.modules'
+                      placeholder: '@self.modules'
+        constructor:
+          type: tab
+          title: Modules
+          fields:
+            -
+              type: constructor
+              name: Modules

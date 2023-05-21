@@ -1,0 +1,63 @@
+{% extends "forms/field.html.twig" %}
+
+{% do assets.addJs('//cdn.jsdelivr.net/npm/gridstack@latest/dist/gridstack-all.js') %}
+{% do assets.addCss('//cdn.jsdelivr.net/npm/gridstack@latest/dist/gridstack.min.css') %}
+{% do assets.addCss('//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css') %}
+
+{% do assets.addCss('plugins://gravy/admin/assets/constructor.css') %}
+{% do assets.addJs('plugins://gravy/admin/assets/constructor.js', { group: 'bottom' }) %}
+
+{% set admin_pages = grav.config.plugins.admin.route ~ '/pages' %}
+{% set page_url = str_replace(admin_pages, '', grav.uri.path) %}
+{% set page = grav.pages.find(page_url) %}
+
+{% block field %}
+	<div class="constructor">
+		<input type="hidden" id="constructor" name="data[header][constructor]">
+		<div class="constructor__sidebar">
+			<div class="constructor__sidebar__header">
+				{{ 'PLUGIN_GRAVY.MODULES'|t }}
+			</div>
+			<div class="constructor__sidebar__list">
+				{% for key,modular in grav.pages.getTypes.modularSelect %}
+					{% set blueprint = grav.pages.blueprints(key) %}
+					<div class="constructor__new grid-stack-item" gs-max-h="1" gs-w="12" data-name="{{ modular|e }}" data-template="{{ key|e }}">
+						<div class="grid-stack-item-content" style="background-color: {{ blueprint.color }}">
+							<span class="constructor__icon {{ (blueprint.icon ?? 'fa fa-cube')|e }}"></span>
+							<span>
+								{{ modular|e }}
+								<span class="constructor__new-decorator">
+									*
+								</span>
+							</span>
+							<span class="text-gray">{{ key|e }}</span>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="constructor__sidebar__trash">
+				<span class="fa fa-trash"></span>
+				<span>{{ 'PLUGIN_GRAVY.DELETE'|t }}</span>
+			</div>
+		</div>
+		<div class="constructor__wrapper">
+			<div class="grid-stack gs-id-12 grid-stack-animate" style="display:none">
+				{% for module in page.collection.modular %}
+					{% set data = module.header.constructor %}
+					<div class="grid-stack-item" gs-w="{{ data.w|e ?: '12' }}" gs-x="{{ data.x|e }}" gs-y="{{ data.y|e }}" gs-max-h="1" gs-id="{{ module.route|e }}" data-name="{{ (module.header.title ?? module.slug)|e }}" data-template="{{ module.blueprintName|e }}">
+						<div class="grid-stack-item-content" style="background-color: {{ module.blueprint.color|e }}">
+							<span class="constructor__icon {{ (module.blueprint.icon ?? 'fa fa-cube')|e }}"></span>
+							<span>
+								{{ (module.header.title ?? module.slug)|e }}
+								<a href="{{ '/' ~ ('/' ~ grav.language.getActive ~ admin_pages ~ module.route)|trim('/') }}" target="{{ module.route|md5 }}" class="constructor__edit">
+									<span class="fa fa-pencil"></span>
+								</a>
+							</span>
+							<span class="text-gray">{{ module.blueprintName|e  }}</span>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

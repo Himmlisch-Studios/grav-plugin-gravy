@@ -1,0 +1,5 @@
+en:
+  PLUGIN_GRAVY:
+    MODULES: 'Modules'
+    DELETE: 'Delete?'
+    COLLECTION: 'Collection'

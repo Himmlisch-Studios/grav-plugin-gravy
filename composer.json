@@ -1,0 +1,31 @@
+{
+  "name": "himmlisch-studios/gravy",
+  "type": "grav-plugin",
+  "description": "Website constructor based on Grav&#039;s modular system",
+  "keywords": ["plugin"],
+  "homepage": "https://github.com/Himmlisch-Studios/grav-plugin-gravy",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Himmlisch Web",
+      "email": "web@himmlisch.com.mx",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Grav\\Plugin\\Gravy\\": "classes/"
+    },
+    "classmap":  ["gravy.php"]
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  },
+  "require-dev": {
+  }
+}

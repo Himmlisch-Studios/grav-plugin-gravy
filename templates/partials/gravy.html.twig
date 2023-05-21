@@ -1,0 +1,30 @@
+{% extends 'partials/base.html.twig' %}
+
+{% macro module(module) %}
+	{% set data = module.header.constructor %}
+	{% set width = min(max(data.w ?? 12, 1), 12) %}
+	<div id="{{ module.menu|hyphenize }}" style="display: inline-flex; max-width:{{ (width * 100) / 12 }}%; width: 100%; overflow: hidden;">
+		<div style="flex: 1">
+			{{ module.content|raw }}
+		</div>
+	</div>
+{% endmacro %}
+
+
+{% macro layout(collection) %}
+	{% import _self as gravy %}
+	<div style="display: flex; flex-wrap: wrap">
+		{% for module in collection|gravy %}
+			{{ gravy.module(module) }}
+		{% endfor %}
+	</div>
+{% endmacro %}
+
+{% block body %}
+	{% import _self as gravy %}
+	{% set collection = page.collection %}
+
+	{% block content %}
+		{{ gravy.layout(collection) }}
+	{% endblock %}
+{% endblock %}

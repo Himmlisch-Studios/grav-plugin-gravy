@@ -1,0 +1,131 @@
+.constructor {
+    display: flex;
+    flex-wrap: wrap;
+    user-select: none;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.constructor__sidebar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    max-height: 700px;
+    overflow: hidden;
+}
+
+.constructor__sidebar__header {
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.constructor__sidebar__list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.constructor__sidebar__trash {
+    color: #fff;
+    background-color: #fc6764;
+    display: flex;
+    position: absolute !important;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+    align-items: center;
+    font-size: 1.15rem;
+    font-weight: 600;
+    transform: translateX(-100px);
+    transition: right 0.3s ease;
+}
+
+.constructor__sidebar__trash.open {
+    right: 0;
+    transform: translateX(0);
+}
+
+.constructor__sidebar__trash .fa {
+    background-color: #F45857;
+    display: grid;
+    border-radius: 0 0.5rem 0 0 !important;
+    font-size: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    place-content: center;
+}
+
+.constructor__sidebar__trash:hover,
+.constructor__sidebar__trash:hover .fa {
+    background-color: #cf4b4a;
+    cursor: not-allowed;
+
+}
+
+.constructor__sidebar__trash :last-child {
+    margin: 0 auto;
+}
+
+.constructor__wrapper {
+    flex: 1;
+    /* width: 80%; */
+    padding: 1rem;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    border-radius: 0.25rem;
+}
+
+.constructor__new-decorator {
+    display: none;
+}
+
+.constructor__wrapper .constructor__new {
+    font-style: italic;
+}
+
+.constructor__wrapper .constructor__new-decorator {
+    display: inline-block;
+}
+
+.constructor__edit {
+    display: none;
+}
+
+.constructor .grid-stack-item-content:hover .constructor__edit {
+    display: inline-block;
+}
+
+.constructor .grid-stack {
+    width: 100%;
+}
+
+.constructor .grid-stack-item {
+    cursor: pointer;
+}
+
+.constructor .grid-stack-item-content {
+    display: grid;
+    background-color: #fff;
+    border: 1px #ccc solid;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    place-content: center;
+    text-align: center;
+}
+
+.constructor__icon {
+    margin-bottom: 0.5rem;
+}
+
+.constructor .grid-stack-item>.grid-stack-item-content {
+    inset: 5px;
+}

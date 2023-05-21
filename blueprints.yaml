@@ -1,0 +1,32 @@
+name: Gravy
+slug: gravy
+type: plugin
+version: 0.1.0
+description: Website constructor based on Grav&#039;s modular system
+icon: cube
+author:
+  name: Himmlisch Web
+  email: web@himmlisch.com.mx
+homepage: https://github.com/Himmlisch-Studios/grav-plugin-gravy
+keywords: grav, gantry, modules, constructor, modular, elementor
+bugs: https://himmlisch.com.mx/contact
+docs: https://docs.himmlisch.com.mx/gravy
+license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.7.41' }
+  - { name: admin, version: '>=1.10.41.2' }
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
